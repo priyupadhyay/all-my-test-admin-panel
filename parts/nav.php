@@ -8,61 +8,44 @@
           <li class="nav-item ">
             <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
               <i class="material-icons">image</i>
-              <p> Pages
+              <p> Organisation
                 <b class="caret"></b>
               </p>
             </a>
             <div class="collapse" id="pagesExamples">
               <ul class="nav">
                 <li class="nav-item ">
-                  <a class="nav-link" href="./pages/pricing.html">
-                    <span class="sidebar-mini"> P </span>
-                    <span class="sidebar-normal"> Pricing </span>
+                  <a class="nav-link" href="add_org.php">
+                    <span class="sidebar-mini"> 1 </span>
+                    <span class="sidebar-normal"> Register Organisation </span>
                   </a>
                 </li>
                 <li class="nav-item ">
                   <a class="nav-link" href="./pages/rtl.html">
-                    <span class="sidebar-mini"> RS </span>
-                    <span class="sidebar-normal"> RTL Support </span>
+                    <span class="sidebar-mini"> 2 </span>
+                    <span class="sidebar-normal"> Update Info. </span>
                   </a>
                 </li>
                 <li class="nav-item ">
                   <a class="nav-link" href="./pages/timeline.html">
-                    <span class="sidebar-mini"> T </span>
-                    <span class="sidebar-normal"> Timeline </span>
+                    <span class="sidebar-mini"> 3 </span>
+                    <span class="sidebar-normal"> Show Oraganisations </span>
                   </a>
                 </li>
                 <li class="nav-item ">
                   <a class="nav-link" href="./pages/login.html">
-                    <span class="sidebar-mini"> LP </span>
-                    <span class="sidebar-normal"> Login Page </span>
+                    <span class="sidebar-mini"> 4 </span>
+                    <span class="sidebar-normal"> Remove Oraganisations </span>
                   </a>
                 </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="./pages/register.html">
-                    <span class="sidebar-mini"> RP </span>
-                    <span class="sidebar-normal"> Register Page </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="./pages/lock.html">
-                    <span class="sidebar-mini"> LSP </span>
-                    <span class="sidebar-normal"> Lock Screen Page </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="./pages/user.html">
-                    <span class="sidebar-mini"> UP </span>
-                    <span class="sidebar-normal"> User Profile </span>
-                  </a>
-                </li>
+                
               </ul>
             </div>
           </li>
           <li class="nav-item ">
             <a class="nav-link" data-toggle="collapse" href="#componentsExamples">
               <i class="material-icons">apps</i>
-              <p> Components
+              <p> Groups
                 <b class="caret"></b>
               </p>
             </a>
@@ -70,53 +53,24 @@
               <ul class="nav">
                 <li class="nav-item ">
                   <a class="nav-link" href="./components/buttons.html">
-                    <span class="sidebar-mini"> B </span>
-                    <span class="sidebar-normal"> Buttons </span>
+                    <span class="sidebar-mini"> 1 </span>
+                    <span class="sidebar-normal"> Create Group </span>
                   </a>
                 </li>
                 <li class="nav-item ">
                   <a class="nav-link" href="./components/grid.html">
-                    <span class="sidebar-mini"> GS </span>
-                    <span class="sidebar-normal"> Grid System </span>
+                    <span class="sidebar-mini"> 2 </span>
+                    <span class="sidebar-normal"> Update Info. </span>
                   </a>
                 </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="./components/panels.html">
-                    <span class="sidebar-mini"> P </span>
-                    <span class="sidebar-normal"> Panels </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="./components/sweet-alert.html">
-                    <span class="sidebar-mini"> SA </span>
-                    <span class="sidebar-normal"> Sweet Alert </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="./components/notifications.html">
-                    <span class="sidebar-mini"> N </span>
-                    <span class="sidebar-normal"> Notifications </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="./components/icons.html">
-                    <span class="sidebar-mini"> I </span>
-                    <span class="sidebar-normal"> Icons </span>
-                  </a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link" href="./components/typography.html">
-                    <span class="sidebar-mini"> T </span>
-                    <span class="sidebar-normal"> Typography </span>
-                  </a>
-                </li>
+                
               </ul>
             </div>
           </li>
           <li class="nav-item ">
             <a class="nav-link" data-toggle="collapse" href="#formsExamples">
               <i class="material-icons">content_paste</i>
-              <p> Forms
+              <p> Students
                 <b class="caret"></b>
               </p>
             </a>
@@ -124,26 +78,26 @@
               <ul class="nav">
                 <li class="nav-item ">
                   <a class="nav-link" href="./forms/regular.html">
-                    <span class="sidebar-mini"> RF </span>
-                    <span class="sidebar-normal"> Regular Forms </span>
+                    <span class="sidebar-mini"> 1 </span>
+                    <span class="sidebar-normal"> Add Students </span>
                   </a>
                 </li>
                 <li class="nav-item ">
                   <a class="nav-link" href="./forms/extended.html">
-                    <span class="sidebar-mini"> EF </span>
-                    <span class="sidebar-normal"> Extended Forms </span>
+                    <span class="sidebar-mini"> 2 </span>
+                    <span class="sidebar-normal"> Show Students </span>
                   </a>
                 </li>
                 <li class="nav-item ">
                   <a class="nav-link" href="./forms/validation.html">
-                    <span class="sidebar-mini"> VF </span>
-                    <span class="sidebar-normal"> Validation Forms </span>
+                    <span class="sidebar-mini"> 3 </span>
+                    <span class="sidebar-normal"> Remove Students </span>
                   </a>
                 </li>
                 <li class="nav-item ">
                   <a class="nav-link" href="./forms/wizard.html">
-                    <span class="sidebar-mini"> W </span>
-                    <span class="sidebar-normal"> Wizard </span>
+                    <span class="sidebar-mini"> 4 </span>
+                    <span class="sidebar-normal"> Update Info. </span>
                   </a>
                 </li>
               </ul>
@@ -152,7 +106,7 @@
           <li class="nav-item ">
             <a class="nav-link" data-toggle="collapse" href="#tablesExamples">
               <i class="material-icons">grid_on</i>
-              <p> Tables
+              <p> Tests
                 <b class="caret"></b>
               </p>
             </a>
@@ -160,20 +114,20 @@
               <ul class="nav">
                 <li class="nav-item ">
                   <a class="nav-link" href="./tables/regular.html">
-                    <span class="sidebar-mini"> RT </span>
-                    <span class="sidebar-normal"> Regular Tables </span>
+                    <span class="sidebar-mini"> 1 </span>
+                    <span class="sidebar-normal"> Schedule Test </span>
                   </a>
                 </li>
                 <li class="nav-item ">
                   <a class="nav-link" href="./tables/extended.html">
-                    <span class="sidebar-mini"> ET </span>
-                    <span class="sidebar-normal"> Extended Tables </span>
+                    <span class="sidebar-mini"> 2 </span>
+                    <span class="sidebar-normal"> Reschedule Test </span>
                   </a>
                 </li>
                 <li class="nav-item ">
                   <a class="nav-link" href="./tables/datatables.net.html">
-                    <span class="sidebar-mini"> DT </span>
-                    <span class="sidebar-normal"> DataTables.net </span>
+                    <span class="sidebar-mini"> 3 </span>
+                    <span class="sidebar-normal"> Update Info. </span>
                   </a>
                 </li>
               </ul>
@@ -182,7 +136,7 @@
           <li class="nav-item ">
             <a class="nav-link" data-toggle="collapse" href="#mapsExamples">
               <i class="material-icons">place</i>
-              <p> Maps
+              <p> Reports
                 <b class="caret"></b>
               </p>
             </a>
@@ -212,19 +166,16 @@
           <li class="nav-item ">
             <a class="nav-link" href="./widgets.html">
               <i class="material-icons">widgets</i>
-              <p> Widgets </p>
+              <p> Send Group Notifications </p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./charts.html">
-              <i class="material-icons">timeline</i>
-              <p> Charts </p>
-            </a>
-          </li>
+          
+          
+          
           <li class="nav-item ">
             <a class="nav-link" href="./calendar.html">
               <i class="material-icons">date_range</i>
-              <p> Calendar </p>
+              <p> Miscellaneous </p>
             </a>
           </li>
         </ul>

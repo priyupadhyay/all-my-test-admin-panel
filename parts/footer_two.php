@@ -69,5 +69,16 @@
     demo.initVectorMap();
   });
 </script>
+<script type="text/javascript">
+  $(document).ready(function() {
 
-</html>
+    //init DateTimePickers
+    md.initFormExtendedDatetimepickers();
+
+
+    // Sliders Init
+    md.initSliders();
+
+  });
+</script>
+

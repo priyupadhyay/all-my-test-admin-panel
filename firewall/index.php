@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <?php
  include '../parts/header_one.php';
  ?>
@@ -18,4 +21,6 @@
  include '../parts/footer_two.php';
 
 ?>
+</body>
+</html>
 
