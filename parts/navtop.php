@@ -9,7 +9,7 @@
                 <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">Dashboard</a>
+            <!-- <a class="navbar-brand" href="#pablo">Dashboard</a> -->
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -29,7 +29,7 @@
             </form>
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="#pablo">
+                <a class="nav-link" href="dashboard.php">
                   <i class="material-icons">dashboard</i>
                   <p>
                     <span class="d-lg-none d-md-block">Stats</span>

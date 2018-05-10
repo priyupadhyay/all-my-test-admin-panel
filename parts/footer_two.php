@@ -1,3 +1,4 @@
+
 <script src="../assets/js/core/jquery.min.js"></script>
 <script src="../assets/js/core/popper.min.js"></script>
 <script src="../assets/js/bootstrap-material-design.js"></script>
@@ -49,6 +50,7 @@
 <script src="../assets/js/plugins/fullcalendar.min.js"></script>
 <!-- demo init -->
 <script src="../assets/js/plugins/demo.js"></script>
+<script src="../configurations.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
 
