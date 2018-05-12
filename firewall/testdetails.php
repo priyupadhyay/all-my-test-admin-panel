@@ -43,7 +43,7 @@
                         </div>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-rose pull-right">Update Profile</button>
+                    <!-- <button type="submit" class="btn btn-rose pull-right">Update Profile</button> -->
                     <div class="clearfix"></div>
                   </form>
                 </div>
@@ -83,7 +83,7 @@
                         </div>
                       </div>
                       
-                     <input type="submit" value="Edit" class="btn btn-rose btn-round" disabled>
+                     <input type="submit" value="Update" class="btn btn-rose btn-round" disabled>
 
                      </form>   
                           
