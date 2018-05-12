@@ -120,12 +120,12 @@
             var url = data.response[0]["file_url"];
             $.get(url, function (data, status) {
                 console.log(data);
-                $.each(data, function(key,value) {
-                    $('#question').append("\n\n");
+                $.each(data, function(key,value) {                   
                     $('#question').append(value.id+". "); 
                     $('#question').append(value.title);  
                     $('#question').append("\n\n");  
                     $('#question').append(value.body);   
+                    $('#question').append("\n\n");
                 });                    
                 });              
 
