@@ -34,23 +34,21 @@
                     <table id="datatables1" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                       <thead>
                         <tr>
-                        <th>user_id</th>
+                        <th>id</th>
                         <th>name</th>
-                        <th>username</th>
-                        <th>email</th>
-                        <th>type</th>
-                        <th>status</th>                        
+                        <th>Description</th>
+                        <th>trainer_id</th>                                          
+                        <th>status</th>
                         <th>actions</th>
                         </tr>
                       </thead>
                       <tfoot>
                         <tr>
-                        <th>user_id</th>
+                        <th>id</th>
                         <th>name</th>
-                        <th>username</th>
-                        <th>email</th>
-                        <th>type</th>
-                        <th>status</th>                        
+                        <th>Description</th>
+                        <th>trainer_id</th>                                          
+                        <th>status</th>
                         <th>actions</th>
                         </tr>
                       </tfoot>
@@ -85,12 +83,12 @@
 
 
     function myFunctionView(x){
-      window.location="userdetails.php?id="+x+"";      
+      window.location="groupdetails.php?id="+x+"";      
     }
     
     function myFunctionDelete(x){
       $(function(){
-        deleteData("users/"+x, function(data){
+        deleteData("groups/"+x, function(data){
           console.log(data); 
         });       
       });
@@ -100,7 +98,7 @@
 
  //$(document).ready(function() {
         $(function(){
-          getData("users", function(data){
+          getData("groups", function(data){
           console.log(data); 
           
           //$.each(data.response, function (index, value) {
@@ -116,13 +114,12 @@ var allData = data.response;
             
 
                         var x = {                          
-                           "user_id": value.user_id,
+                           "id": value.id,
                            "name": value.name,
-                           "uname": value.uname,
-                           "email": value.email,
-                           "type": value.type,
-                           "status": value.status,                            
-                           "action":"<a href='#' class='btn btn-link btn-info btn-just-icon' onclick='myFunctionView("+value.user_id+")'><i class='material-icons'>dvr</i></a><a href='#' class='btn btn-link btn-danger btn-just-icon' onclick='myFunctionDelete("+value.user_id+")'><i class='material-icons'>close</i></a>"                    
+                           "Desc": value.description,
+                           "trainer": value.trainer_id,
+                           "status": value.status,                          
+                           "action":"<a href='#' class='btn btn-link btn-info btn-just-icon' onclick='myFunctionView("+value.id+")'><i class='material-icons'>dvr</i></a><a href='#' class='btn btn-link btn-danger btn-just-icon' onclick='myFunctionDelete("+value.id+")'><i class='material-icons'>close</i></a>"                    
                             };
            
            questionData.push(x);
@@ -135,12 +132,11 @@ var table1 = $('#datatables1').DataTable( {
             processing : true,
             data: questionData,
             columns: [
-                {"data": "user_id"},
+                {"data": "id"},
                 {"data": "name"},
-                {"data": "uname"},
-                {"data": "email"},
-                {"data": "type"},                
-                {"data": "status"},           
+                {"data": "Desc"},
+                {"data": "trainer"},
+                {"data": "status"},              
                 {"data": "action"},
 
             ]

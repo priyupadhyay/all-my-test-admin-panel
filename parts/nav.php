@@ -29,7 +29,12 @@
               <p> Users </p>
             </a>
           </li>
-          
+          <li class="nav-item">
+            <a class="nav-link" href="./allgroup.php">
+            <i class="material-icons">dashboard</i>
+              <p> All Groups </p>
+            </a>
+          </li>
           
         </ul>
       </div>
