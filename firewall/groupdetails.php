@@ -29,10 +29,44 @@
                   <h4 class="card-title text-gray" id="name"></h4>                 
                   <h5 class="card-title text-gray" id="description"></h4>
                   <h4 class="card-title text-gray" id="trainer_id"></h4>
+                  <button class="btn btn-primary  btn-round" data-toggle="modal" data-target="#myModal">
+                       EDIT
+                      </button>
                 </div>
+                
               </div>
 
             </div>
+
+             <!-- Classic Modal -->
+             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h4 class="modal-title">Edit Group</h4>
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                <i class="material-icons">clear</i>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                             
+                              <div class="form-group bmd-form-group is-filled">                                
+                                <input type="text" id="title" class="form-control">
+                                <textarea required id="description1" class="form-control"></textarea>
+                                <select required id="userSelect" class="form-control">
+                              
+                              </select>
+                                
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" onclick="putUser();" class="btn btn-link">Update</button>
+                              <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--  End Modal -->
             
 
             <div class="col-md-8">
@@ -94,16 +128,57 @@
  include '../parts/footer_two.php';
  ?>
  <script>
+     $(function(){     
+        getData("users/type/Faculty", function(data){
+          console.log(data); 
+          $.each(data.response, function(key, value) {   
+        $('#userSelect')
+         .append($("<option></option>")
+                    .attr("value",value.user_id)
+                    .text(value.name)); 
+        });
+        });           
+        });
+   
+
      $(function(){         
-        var val = <?php echo $id ?>;       
-          getData("groups/"+val, function(data){           
+        var val = <?php echo $id ?>;
+        var namee="";       
+          getData("groups/"+val, function(data){              
+              var val1 = data.response[0]["trainer_id"]; 
+              $(function(){
+              getData("users/"+val1, function(data1){
+              namee = data1.response[0]["name"];
+            $('#title').val((data.response[0]["name"]));
+            $('#description1').val((data.response[0]["description"])); 
             $('#name').html((data.response[0]["name"]));   
             $('#uname').html("id - "+(data.response[0]["id"]));   
             $('#description').html((data.response[0]["description"]));
-            $('#trainer_id').html("Traner id - "+(data.response[0]["trainer_id"]));        
-          console.log(data);
+            $('#trainer_id').html(namee+"("+val1+")");        
+            console.log(data);             
+            });
+          });
+
+            
           });
         });
+
+
+ function putUser() {
+        $( function(){
+         var val = <?php echo $id ?>;
+         var n = $('#title').val();
+         var d = $('#description1').val();
+         var t = $('#userSelect').val();   
+         req = {"name": n,"description": d,"trainer_id": t};         
+          putData("groups/"+val, req , function(data){
+            location.reload();
+          });
+          
+        });
+      }
+
+
 </script>
 
 
