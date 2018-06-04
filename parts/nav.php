@@ -81,12 +81,12 @@
           </li>
 
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="./conversations.php">
             <i class="material-icons">message</i>
               <p> Converstations </p>
             </a>
-          </li>
+          </li> -->
           
         </ul>
       </div>
