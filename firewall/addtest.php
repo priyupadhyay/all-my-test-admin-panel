@@ -20,14 +20,8 @@
         <div class="container-fluid">
           <div class="row">
           <div class="col-md-12">
-              <div class="card ">
-                <div class="card-header card-header-rose card-header-text">
-                  <div class="card-text">
-                    <h4 class="card-title">Add new Test</h4>
-                  </div>
-                </div>
-                <div class="card-body ">
-                  <form method="get" action="" class="form-horizontal">
+                
+                  <!-- <form method="get" action="" class="form-horizontal">
 
                     <div class="row">
                       <label class="col-sm-2 col-form-label">Title</label>
@@ -95,9 +89,185 @@
                     
                     <input type="submit" value="Insert" class="btn btn-rose btn-round">
                     
-                  </form>
-                </div>
+                  </form> -->
+
+<!-- Wizard Form -->
+<div class="wizard-container">
+              <div class="card card-wizard" data-color="rose" id="wizardProfile">
+                <form action="" method="" novalidate="novalidate">
+                  <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
+                  <div class="card-header text-center">
+                    <h3 class="card-title">
+                      Add New Test
+                    </h3>
+                    <h5 class="card-description">Create a new test based on the available Question Papers.</h5>
+                  </div>
+                  <div class="wizard-navigation">
+                    <ul class="nav nav-pills">
+                      <li class="nav-item" style="width: 33.3333%;">
+                        <a class="nav-link active" href="#about" data-toggle="tab" role="tab">
+                          Test Details
+                        </a>
+                      </li>
+                      <li class="nav-item" style="width: 33.3333%;">
+                        <a class="nav-link" href="#account" data-toggle="tab" role="tab">
+                          Select Question Paper
+                        </a>
+                      </li>
+                      <li class="nav-item" style="width: 33.3333%;">
+                        <a class="nav-link" href="#address" data-toggle="tab" role="tab">
+                          Select Group
+                        </a>
+                      </li>
+                    </ul>
+                  <div class="moving-tab" style="width: 171.233px; transform: translate3d(-8px, 0px, 0px); transition: transform 0s;">
+                          Test Details
+                        </div></div>
+                  <div class="card-body">
+                    <div class="tab-content">
+                      <div class="tab-pane active" id="about">
+                        <h5 class="info-text"> Let's start with the basic information for the test.</h5>
+                        <div class="row justify-content-center">
+                          
+                          <div class="col-sm-6">
+                            <div class="input-group form-control-lg">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                  <i class="material-icons">turned_in_not</i>
+                                </span>
+                              </div>
+                              <div class="form-group bmd-form-group has-danger">
+                                <label for="title" class="bmd-label-floating">Title (required)</label>
+                                <input type="text" class="form-control" id="title" name="title" required="" aria-required="true">
+                              </div>
+                            </div>
+                            <div class="input-group form-control-lg">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                  <i class="material-icons">info</i>
+                                </span>
+                              </div>
+                              <div class="form-group bmd-form-group has-danger">
+                                <label for="exampleInput11" class="bmd-label-floating">Description</label>
+                                <textarea class="form-control" id="exampleInput11" aria-required="true">
+                                </textarea>
+                              </div>
+
+                            <div class="input-group form-control-lg">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                  <i class="material-icons">assignment_late</i>
+                                </span>
+                              </div>
+                              <div class="form-group bmd-form-group has-danger">
+                                <label for="exampleInput11" class="bmd-label-floating">Instructions</label>
+                                <textarea class="form-control" id="exampleInput11" aria-required="true">
+                                </textarea>
+                              </div>
+                            </div>
+
+
+
+                            </div>
+                          </div>
+                          
+                        </div>
+                      </div>
+                      <div class="tab-pane" id="account">
+                        <h5 class="info-text"> Select a Question Paper </h5>
+                        <div class="row justify-content-center">
+                          <div class="col-lg-10">
+                            <!-- <div class="row"> -->
+
+
+
+                        <div class="material-datatables">
+                          <table id="datatables1" class="table table-striped table-no-bordered table-hover" cellspacing="0">
+                            <thead>
+                              <tr>
+                              <th>Class</th>
+                              <th>Subject</th>
+                              <th>Title</th>
+                              <th>Marks</th>
+                              <th>actions</th>
+                              </tr>
+                            </thead>
+                            <tfoot>
+                              <tr>
+                              <th>Class</th>
+                              <th>Subject</th>
+                              <th>Title</th>
+                              <th>Marks</th>
+                              <th>actions</th>
+                              </tr>
+                            </tfoot>
+                            <tbody>
+                              
+                            </tbody>
+                          </table>
+                        </div>
+
+
+
+                            <!-- </div> -->
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="tab-pane" id="address">
+                        <h5 class="info-text"> Select a Group </h5>
+                        <div class="row justify-content-center">
+                          <div class="col-lg-10">
+                            <!-- <div class="row"> -->
+
+
+
+                        <div class="material-datatables">
+                          <table id="datatables1" class="table table-striped table-no-bordered table-hover" cellspacing="0">
+                            <thead>
+                              <tr>
+                              <th>Name</th>
+                              <th>Description</th>
+                              <th>action</th>
+                              </tr>
+                            </thead>
+                            <tfoot>
+                              <tr>
+                              <th>Name</th>
+                              <th>Description</th>
+                              <th>action</th>
+                              </tr>
+                            </tfoot>
+                            <tbody>
+                              
+                            </tbody>
+                          </table>
+                        </div>
+
+
+
+                            <!-- </div> -->
+                          </div>
+                        </div>
+                      </div>
+                     
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <div class="mr-auto">
+                      <input type="button" class="btn btn-previous btn-fill btn-default btn-wd disabled" name="previous" value="Previous">
+                    </div>
+                    <div class="ml-auto">
+                      <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="Next">
+                      <input type="button" class="btn btn-finish btn-fill btn-rose btn-wd" name="finish" value="Finish" style="display: none;">
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </form>
               </div>
+            </div>
+<!-- Wizard Form Ends-->
+
             </div>
         </div>
       </div>
@@ -124,4 +294,18 @@
         });
         });           
         });
+</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    //init wizard
+
+    demo.initMaterialWizard();
+
+    // Javascript method's body can be found in assets/js/demos.js
+    demo.initDashboardPageCharts();
+
+    demo.initCharts();
+
+  });
 </script>
