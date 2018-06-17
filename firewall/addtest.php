@@ -182,14 +182,14 @@
 
 
                         <div class="material-datatables">
-                          <table id="datatables1" class="table table-striped table-no-bordered table-hover" cellspacing="0">
+                          <table id="questionPaperTable" class="table table-striped table-no-bordered table-hover" cellspacing="0">
                             <thead>
                               <tr>
                               <th>Class</th>
                               <th>Subject</th>
                               <th>Title</th>
                               <th>Marks</th>
-                              <th>actions</th>
+                              <th>Actions</th>
                               </tr>
                             </thead>
                             <tfoot>
@@ -198,7 +198,7 @@
                               <th>Subject</th>
                               <th>Title</th>
                               <th>Marks</th>
-                              <th>actions</th>
+                              <th>Actions</th>
                               </tr>
                             </tfoot>
                             <tbody>
@@ -284,16 +284,83 @@
  ?>
  <script>
      $(function(){     
+        
+        getData("questionpaper", function(data){
+        console.log(data); 
+        var allData = data.response;
+        var questionData = [{}];
+        
+        $.each(allData, function(key,value) {
+            var x = { 
+                "qclass": value.qclass,
+                "qsubject": value.qsubject,
+                "qname": value.qname,
+                "qmarks": value.qmarks,
+                "action":"<a href='#' class='btn btn-link btn-info btn-just-icon' onclick=preview('http://msmypaper.com/jsonqp/"+value.qid+".json')><i class='material-icons'>dvr</i></a><a href='#' class='btn btn-link btn-success btn-just-icon' onclick=selectQp('http://msmypaper.com/jsonqp/"+value.qid+".json')><i class='material-icons'>close</i></a>"                    
+                };
+            questionData.push(x);
+        });
+            questionData.splice(0, 1);
+        var table1 = $('#questionPaperTable').DataTable( {
+            Language: {
+            Processing: ""
+            },
+            processing : true,
+            data: questionData,
+            columns: [
+                {"data": "qclass"},
+                {"data": "qsubject"},
+                {"data": "qname"},
+                {"data": "qmarks"},
+                {"data": "action"}
+                ]
+            });
+                
+      });
+
         getData("groups", function(data){
           console.log(data); 
           $.each(data.response, function(key, value) {   
-        $('#groupSelect')
-         .append($("<option></option>")
-                    .attr("value",value.id)
-                    .text(value.name)); 
-        });
+          $('#groupSelect')
+          .append($("<option></option>")
+                      .attr("value",value.id)
+                      .text(value.name)); 
+          });
         });           
+      });
+
+      function postTest() {
+        $( function(){
+         
+         var title = $('#title').val();
+         var description = $('#description').val();
+         var instructions = $('#instructions').val();   
+         var testFileId = $('#testFileId').val();   
+         var scheduledDate = $('#scheduledDate').val();   
+         var endDate = $('#endDate').val();   
+         var groupId = $('#groupId').val();   
+
+
+         req = {
+            "title": title,
+            "description": description, 
+            "instructions": instructions, 
+            "test_file_id": tesFileId, 
+            "scheduled_date": scheduledDate,
+            "end_date" : endDate,
+            "group_id" : groupId
+         };
+
+          postData("tests", req , function(data){
+            if(data.error==null){
+              showSwal('success-message', "Test Added Successfully");
+            //$('#users').html(syntaxHighlight("Recored Inserted Successflly"));
+            } else{
+            showSwal('error', data.error);            
+            }
+          });           
         });
+      }
 </script>
 <script type="text/javascript">
   $(document).ready(function() {

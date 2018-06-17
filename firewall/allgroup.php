@@ -96,17 +96,10 @@
     }
 
 
- //$(document).ready(function() {
         $(function(){
           getData("groups", function(data){
           console.log(data); 
-          
-          //$.each(data.response, function (index, value) {
-        //console.log(value.description);
-    //});      
-    
-    
-
+ 
 var allData = data.response;
         var questionData = [{}];
         

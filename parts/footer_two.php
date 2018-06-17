@@ -51,6 +51,7 @@
 <!-- demo init -->
 <script src="../assets/js/plugins/demo.js"></script>
 <script src="../configurations.js"></script>
+<script src="js/sweetalert.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
 
