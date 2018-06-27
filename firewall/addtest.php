@@ -185,19 +185,29 @@
                           <table id="questionPaperTable" class="table table-striped table-no-bordered table-hover" cellspacing="0">
                             <thead>
                               <tr>
-                              <th>Class</th>
-                              <th>Subject</th>
-                              <th>Title</th>
-                              <th>Marks</th>
+                              <th>id</th>
+                              <th>name</th>
+                              <th>marks</th>
+                              <th>duration</th>
+                              <th>subject</th>
+                              <th>class</th>                             
+                              <th>by</th>
+                              <th>url</th>
+                              <th>answer</th>
                               <th>Actions</th>
                               </tr>
                             </thead>
                             <tfoot>
                               <tr>
-                              <th>Class</th>
-                              <th>Subject</th>
-                              <th>Title</th>
-                              <th>Marks</th>
+                              <th>id</th>
+                              <th>name</th>
+                              <th>marks</th>
+                              <th>duration</th>
+                              <th>subject</th>
+                              <th>class</th>                             
+                              <th>by</th>
+                              <th>url</th>
+                              <th>answer</th>
                               <th>Actions</th>
                               </tr>
                             </tfoot>
@@ -292,11 +302,16 @@
         
         $.each(allData, function(key,value) {
             var x = { 
-                "qclass": value.qclass,
-                "qsubject": value.qsubject,
-                "qname": value.qname,
-                "qmarks": value.qmarks,
-                "action":"<a href='#' class='btn btn-link btn-info btn-just-icon' onclick=preview('http://msmypaper.com/jsonqp/"+value.qid+".json')><i class='material-icons'>dvr</i></a><a href='#' class='btn btn-link btn-success btn-just-icon' onclick=selectQp('http://msmypaper.com/jsonqp/"+value.qid+".json')><i class='material-icons'>close</i></a>"                    
+                "id": value.id,
+                "name": value.name,
+                "marks": value.marks,
+                "duration": value.duration,
+                "subject": value.subject,
+                "class": value.class,
+                "by": value.by,
+                "url": "<a href='#' class='btn btn-link btn-info btn-just-icon' onclick=preview('http://msmypaper.com/jsonqp/"+value.qid+".json')><i class='material-icons'>dvr</i></a><a href='#' class='btn btn-link btn-success btn-just-icon' onclick=selectQp("+value.file_url+")><i class='material-icons'>close</i></a>",
+                "answer":"<a href='#' class='btn btn-link btn-info btn-just-icon' onclick=preview('http://msmypaper.com/jsonqp/"+value.qid+".json')><i class='material-icons'>dvr</i></a><a href='#' class='btn btn-link btn-success btn-just-icon' onclick=selectQp("+value.file_url_answer+")><i class='material-icons'>close</i></a>",
+                "Action":"action"
                 };
             questionData.push(x);
         });
@@ -308,11 +323,16 @@
             processing : true,
             data: questionData,
             columns: [
-                {"data": "qclass"},
-                {"data": "qsubject"},
-                {"data": "qname"},
-                {"data": "qmarks"},
-                {"data": "action"}
+                {"data": "id"},
+                {"data": "name"},
+                {"data": "marks"},
+                {"data": "duration"},
+                {"data": "subject"},
+                {"data": "class"},
+                {"data": "by"},
+                {"data": "url"},
+                {"data": "answer"},
+                {"data": "Action"}
                 ]
             });
                 
