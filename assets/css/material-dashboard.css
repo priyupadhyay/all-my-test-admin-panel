@@ -27955,4 +27955,9 @@ select.selectpicker {
   }
 }
 
+.modal.in{
+	opacity:1;
+	display:block;
+	background:rgba(0,0,0,0.3);
+}
 /*# sourceMappingURL=material-dashboard.css.map */
