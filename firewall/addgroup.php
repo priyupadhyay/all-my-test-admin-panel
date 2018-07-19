@@ -53,7 +53,7 @@
                       <div class="col-sm-10">
                         <div class="form-group">
                             <select required id="userSelect" class="form-control">
-                              
+	
                             </select>
                       
                           <span class="bmd-help">plesae select a Trainer/Faculty</span>
@@ -87,19 +87,29 @@
  <?php>
  include '../parts/footer_two.php';
  ?>
+ 
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  <script>
-     $(function(){     
-        getData("users/type/Faculty", function(data){
-          console.log(data); 
-          $.each(data.response, function(key, value) {   
-        $('#userSelect')
-         .append($("<option></option>")
-                    .attr("value",value.user_id)
-                    .text(value.name)); 
-        });
-        });           
-        });
-
+	$(document).ready(function(){
+		$.ajax({
+		   type:'GET',
+		   url:'http://35.194.226.60:3000/api/v1/users/type/Faculty',
+		   data:'',
+		   success:function(data){
+				console.log(data); 
+				$.each(data.response, function(key, value) {   
+					$('#userSelect')
+					 .append($("<option></option>")
+					 .attr("value",value.user_id)
+					 .text(value.name)); 
+				});
+			}
+		});		
+	});
+		
+</script>
+<script>
     function postUser() {
         $( function(){
          

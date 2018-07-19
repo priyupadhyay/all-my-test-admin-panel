@@ -54,7 +54,7 @@
                         <th>actions</th>
                         </tr>
                       </tfoot>
-                      <tbody>
+                      <tbody id="tabl">
                         
                        </tbody>
                     </table>
@@ -94,107 +94,35 @@
           console.log(data); 
         });       
       });
+	  
+	  $.ajax({
+		   type:'DELETE',
+		   url:'http://35.194.226.60:3000/api/v1/users/'+x,
+		   data:'',
+		   success:function(data){
+				//alert(data);
+				var row = document.getElementById(x);
+				row.parentNode.removeChild(row);
+			}
+		});
      
-    }
-
-
- //$(document).ready(function() {
-        $(function(){
-          getData("users", function(data){
-          console.log(data); 
-          
-          //$.each(data.response, function (index, value) {
-        //console.log(value.description);
-    //});      
-    
-    
-
-var allData = data.response;
-        var questionData = [{}];
-        
-        $.each(allData, function(key,value) {
-            
-
-                        var x = {                          
-                           "user_id": value.user_id,
-                           "name": value.name,
-                           "uname": value.uname,
-                           "email": value.email,
-                           "type": value.type,
-                           "status": value.status,                            
-                           "action":"<a href='#' class='btn btn-link btn-info btn-just-icon' onclick='myFunctionView("+value.user_id+")'><i class='material-icons'>dvr</i></a><a href='#' class='btn btn-link btn-danger btn-just-icon' onclick='myFunctionDelete("+value.user_id+")'><i class='material-icons'>close</i></a>"                    
-                            };
-           
-           questionData.push(x);
-        });
-            questionData.splice(0, 1);
-var table1 = $('#datatables1').DataTable( {
-            Language: {
-            Processing: ""
-            },
-            processing : true,
-            data: questionData,
-            columns: [
-                {"data": "user_id"},
-                {"data": "name"},
-                {"data": "uname"},
-                {"data": "email"},
-                {"data": "type"},                
-                {"data": "status"},           
-                {"data": "action"},
-
-            ]
-            });
-
-
-
-          });          
-        });
- //});
+    } 
+  </script>  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$.ajax({
+		   type:'GET',
+		   url:'http://35.194.226.60:3000/api/v1/users',
+		   data:'',
+		   success:function(data){
+		   
+				for (var i in data.response) {
+					$("#tabl").append('<tr id="'+data.response[i].user_id+'"><td>'+data.response[i].user_id+'</td><td>'+data.response[i].name+'</td><td>'+data.response[i].uname+'</td><td>'+data.response[i].email+'</td><td>'+data.response[i].type+'</td><td>'+data.response[i].status+'</td><td><a href="#" class="btn btn-link btn-info btn-just-icon" onclick="myFunctionView('+data.response[i].user_id+')"><i class="material-icons">dvr</i></a><a href="#" class="btn btn-link btn-danger btn-just-icon" onclick="myFunctionDelete('+data.response[i].user_id+')"><i class="material-icons">close</i></a></td></tr>');
+				}
+			}
+		});	
+	});
 </script>
-
- <script type="text/javascript">
-  $(document).ready(function() {
-    $('#datatables').DataTable({
-      "pagingType": "full_numbers",
-      "lengthMenu": [
-        [10, 25, 50, -1],
-        [10, 25, 50, "All"]
-      ],
-      responsive: true,
-      language: {
-        search: "_INPUT_",
-        searchPlaceholder: "Search records",
-      }
-
-    });
-
-
-    var table = $('#datatables').DataTable();
-
-    // Edit record
-    table.on('click', '.edit', function() {
-      $tr = $(this).closest('tr');
-
-      var data = table.row($tr).data();
-      alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-    });
-
-    // Delete a record
-    table.on('click', '.remove', function(e) {
-      $tr = $(this).closest('tr');
-      table.row($tr).remove().draw();
-      e.preventDefault();
-    });
-
-    //Like record
-    table.on('click', '.like', function() {
-      alert('You clicked on Like button');
-    });
-
-    $('.card .material-datatables label').addClass('form-group');
-  });
-</script>
-
 </html>
 

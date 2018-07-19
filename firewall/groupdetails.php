@@ -8,7 +8,6 @@
 <title>
  Material Dashboard by Creative Tim
 </title>
-
 <?Php
  include '../parts/header_two.php';
  include '../parts/nav.php';
@@ -16,6 +15,7 @@
 
 ?>
 
+ 
  <div class="content">
         <div class="container-fluid">
           <div class="row">          
@@ -29,7 +29,7 @@
                   <h4 class="card-title text-gray" id="name"></h4>                 
                   <h5 class="card-title text-gray" id="description"></h4>
                   <h4 class="card-title text-gray" id="trainer_id"></h4>
-                  <button class="btn btn-primary  btn-round" data-toggle="modal" data-target="#myModal">
+                  <button class="btn btn-primary" type="button" onclick="<script>$('#myModal').modal('show');</script>" >
                        EDIT
                       </button>
                 </div>
@@ -39,7 +39,7 @@
             </div>
 
              <!-- Classic Modal -->
-             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+             <div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -103,7 +103,7 @@
                         <th>actions</th>
                         </tr>
                       </tfoot>
-                      <tbody>
+                      <tbody id="tabl">
                         
                        </tbody>
                     </table>
@@ -127,8 +127,10 @@
  <?php>
  include '../parts/footer_two.php';
  ?>
+ 
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  <script>
-     $(function(){     
+     /* $(function(){     
         getData("users/type/Faculty", function(data){
           console.log(data); 
           $.each(data.response, function(key, value) {   
@@ -138,45 +140,71 @@
                     .text(value.name)); 
         });
         });           
-        });
+        }); */
    
-
-     $(function(){         
-        var val = <?php echo $id ?>;
-        var namee="";       
-          getData("groups/"+val, function(data){              
-              var val1 = data.response[0]["trainer_id"]; 
-              $(function(){
-              getData("users/"+val1, function(data1){
-              namee = data1.response[0]["name"];
-            $('#title').val((data.response[0]["name"]));
-            $('#description1').val((data.response[0]["description"])); 
-            $('#name').html((data.response[0]["name"]));   
-            $('#uname').html("id - "+(data.response[0]["id"]));   
-            $('#description').html((data.response[0]["description"]));
-            $('#trainer_id').html(namee+"("+val1+")");        
-            console.log(data);             
-            });
-          });
-
-            
-          });
-        });
-
-
- function putUser() {
-        $( function(){
+	$(document).ready(function(){
+		$.ajax({
+		   type:'GET',
+		   url:'http://35.194.226.60:3000/api/v1/users/type/Faculty',
+		   data:'',
+		   success:function(data){
+				console.log(data); 
+				  $.each(data.response, function(key, value) {   
+					$('#userSelect')
+					.append($("<option></option>")
+					.attr("value",value.user_id)
+					.text(value.name)); 
+				});
+		   }
+		});	
+	});
+	
+	$(document).ready(function(){
+		var val = <?php echo $id ?>;
+		$.ajax({
+		   type:'GET',
+		   url:'http://35.194.226.60:3000/api/v1/groups/'+val,
+		   data:'',
+		   success:function(data){
+				var val1 = data.response[0]["trainer_id"]; 
+				$(function(){
+					$.ajax({
+					   type:'GET',
+					   url:'http://35.194.226.60:3000/api/v1/users/'+val1,
+					   data:'',
+					   success:function(data){
+							console.log(data); 
+							namee = data.response[0]["name"];
+							$('#title').val((data.response[0]["name"]));
+							$('#description1').val((data.response[0]["description"])); 
+							$('#name').html((data.response[0]["name"]));   
+							$('#uname').html((data.response[0]["uname"]));   
+							$('#description').html((data.response[0]["description"]));
+							$('#trainer_id').html(namee+"("+val1+")");        
+							console.log(data); 
+						}
+					});  
+			  });
+		   }
+		});	
+	});
+	
+	function putUser() {
          var val = <?php echo $id ?>;
          var n = $('#title').val();
          var d = $('#description1').val();
          var t = $('#userSelect').val();   
-         req = {"name": n,"description": d,"trainer_id": t};         
-          putData("groups/"+val, req , function(data){
-            location.reload();
-          });
-          
-        });
-      }
+         req = {"name": n,"description": d,"trainer_id": t}; 
+
+			$.ajax({
+			   type:'GET',
+			   url:'http://35.194.226.60:3000/api/v1/groups/'+val,
+			   data:req,
+			   success:function(data){
+					location.reload();
+				}
+			});  
+		}
 
 
 </script>
@@ -184,41 +212,38 @@
 
 <script>
 
+	var questionData = [{}];
+	var val = <?php echo $id ?>;	
+	
+	function myFunctionView(x){
+	  window.location="userdetails.php?id="+x+"";      
+	}
 
-function myFunctionView(x){
-  window.location="userdetails.php?id="+x+"";      
-}
+	function myFunctionDelete(x){
+		$.ajax({
+		   type:'DELETE',
+		   url:'http://35.194.226.60:3000/api/v1/groups/removestudent/'+val+'/'+x,
+		   data:'',
+		   success:function(data){
+				//alert(data);
+				var row = document.getElementById(x);
+				row.parentNode.removeChild(row);
+			}
+		});
+	}
 
-function myFunctionDelete(x){
-  $(function(){
-    var val = <?php echo $id ?>;
-    deleteData("groups/removestudent/"+val+"/"+x, function(data){
-      console.log(data); 
-    });       
-  });
- 
-}
-
-
-//$(document).ready(function() {
-    $(function(){
-        var val = <?php echo $id ?>;       
-      getData("groups/"+val+"/users", function(data){
-      console.log(data); 
-      
-      //$.each(data.response, function (index, value) {
-    //console.log(value.description);
-//});      
-
-
-
-var allData = data.response;
-    var questionData = [{}];
-    
-    $.each(allData, function(key,value) {
-        
-
-                    var x = {                          
+	
+	$(document).ready(function(){
+		
+		$.ajax({
+		   type:'GET',
+		   url:'http://35.194.226.60:3000/api/v1/groups/'+val+'/users',
+		   data:'',
+		   success:function(data){
+				console.log(data); 
+				var allData = data.response;
+				$.each(allData, function(key,value) {
+					 var x = {                          
                        "user_id": value.user_id,
                        "name": value.name,
                        "uname": value.uname,
@@ -226,75 +251,17 @@ var allData = data.response;
                        "type": value.type,
                        "status": value.status,                            
                        "action":"<a href='#' title='view details of the students' class='btn btn-link btn-info btn-just-icon' onclick='myFunctionView("+value.user_id+")'><i class='material-icons'>dvr</i></a><a href='#' title='remove student from the group' class='btn btn-link btn-danger btn-just-icon' onclick='myFunctionDelete("+value.user_id+")'><i class='material-icons'>close</i></a>"                    
-                        };
-       
-       questionData.push(x);
-    });
-        questionData.splice(0, 1);
-var table1 = $('#datatables1').DataTable( {
-        Language: {
-        Processing: ""
-        },
-        processing : true,
-        data: questionData,
-        columns: [
-            {"data": "user_id"},
-            {"data": "name"},
-            {"data": "uname"},
-            {"data": "email"},
-            {"data": "type"},                
-            {"data": "status"},           
-            {"data": "action"},
+                    };
+					questionData.push(x);
+				});
+				questionData.splice(0, 1);
+				console.log(questionData); 
+				
+				for (var i in questionData) {
+					$("#tabl").append('<tr id="'+questionData[i].user_id+'"><td>'+questionData[i].user_id+'</td><td>'+questionData[i].name+'</td><td>'+questionData[i].uname+'</td><td>'+questionData[i].email+'</td><td>'+questionData[i].type+'</td><td>'+questionData[i].status+'</td><td>'+questionData[i].action+'</td></tr>');
+				}
+			}
+		});	
+	});
 
-        ]
-        });
-
-
-
-      });          
-    });
-//});
-</script>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('#datatables').DataTable({
-      "pagingType": "full_numbers",
-      "lengthMenu": [
-        [10, 25, 50, -1],
-        [10, 25, 50, "All"]
-      ],
-      responsive: true,
-      language: {
-        search: "_INPUT_",
-        searchPlaceholder: "Search records",
-      }
-
-    });
-
-
-    var table = $('#datatables').DataTable();
-
-    // Edit record
-    table.on('click', '.edit', function() {
-      $tr = $(this).closest('tr');
-
-      var data = table.row($tr).data();
-      alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-    });
-
-    // Delete a record
-    table.on('click', '.remove', function(e) {
-      $tr = $(this).closest('tr');
-      table.row($tr).remove().draw();
-      e.preventDefault();
-    });
-
-    //Like record
-    table.on('click', '.like', function() {
-      alert('You clicked on Like button');
-    });
-
-    $('.card .material-datatables label').addClass('form-group');
-  });
 </script>
