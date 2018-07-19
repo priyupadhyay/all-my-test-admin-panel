@@ -21,13 +21,13 @@
           <div class="row">
           <div class="col-md-12">
                 
-                  <!-- <form method="get" action="" class="form-horizontal">
+                  <form method="get" action="" class="form-horizontal">
 
                     <div class="row">
                       <label class="col-sm-2 col-form-label">Title</label>
                       <div class="col-sm-10">
                         <div class="form-group">
-                          <input type="email" class="form-control">
+                          <input type="text" class="form-control">
                           <span class="bmd-help">plesae give a title.</span>
                         </div>
                       </div>
@@ -43,14 +43,14 @@
                     </div>
 
                    <div class="row">
-                      <label class="col-sm-2 col-form-label">Select Group</label>
+                      <label class="col-sm-2 col-form-label">Select Test</label>
                       <div class="col-sm-10">
                         <div class="form-group">
-                            <select id="groupSelect" class="form-control">
+                            <select id="testSelect" class="form-control">
                                 
                             </select>
                       
-                          <span class="bmd-help">plesae select a group</span>
+                          <span class="bmd-help">plesae select a test</span>
                         </div>
                       </div>
                     </div>  
@@ -89,13 +89,13 @@
                     
                     <input type="submit" value="Insert" class="btn btn-rose btn-round">
                     
-                  </form> -->
+                  </form> 
 
-<!-- Wizard Form -->
-<div class="wizard-container">
+<!-- Wizard Form 
+			<div class="wizard-container">
               <div class="card card-wizard" data-color="rose" id="wizardProfile">
                 <form action="" method="" novalidate="novalidate">
-                  <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
+                  <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"      
                   <div class="card-header text-center">
                     <h3 class="card-title">
                       Add New Test
@@ -149,7 +149,7 @@
                               </div>
                               <div class="form-group bmd-form-group has-danger">
                                 <label for="exampleInput11" class="bmd-label-floating">Description</label>
-                                <textarea class="form-control" id="exampleInput11" aria-required="true">
+                                <textarea class="form-control" name="description" id="exampleInput11" aria-required="true">
                                 </textarea>
                               </div>
 
@@ -161,12 +161,12 @@
                               </div>
                               <div class="form-group bmd-form-group has-danger">
                                 <label for="exampleInput11" class="bmd-label-floating">Instructions</label>
-                                <textarea class="form-control" id="exampleInput11" aria-required="true">
+                                <textarea class="form-control" name='instructions' id="exampleInput11" aria-required="true">
                                 </textarea>
                               </div>
                             </div>
 
-
+ <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" onClick="nextTab()" name="next" value="Next">
 
                             </div>
                           </div>
@@ -177,7 +177,7 @@
                         <h5 class="info-text"> Select a Question Paper </h5>
                         <div class="row justify-content-center">
                           <div class="col-lg-10">
-                            <!-- <div class="row"> -->
+                            <!-- <div class="row"> 
 
 
 
@@ -211,15 +211,15 @@
                               <th>Actions</th>
                               </tr>
                             </tfoot>
-                            <tbody>
+                            <tbody id="tabl1">
                               
                             </tbody>
                           </table>
                         </div>
 
 
-
-                            <!-- </div> -->
+ <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" onClick="nextTab1()" name="next" value="Next">
+                            <!-- </div>
                           </div>
                         </div>
                       </div>
@@ -228,7 +228,7 @@
                         <h5 class="info-text"> Select a Group </h5>
                         <div class="row justify-content-center">
                           <div class="col-lg-10">
-                            <!-- <div class="row"> -->
+                            <!-- <div class="row"> 
 
 
 
@@ -248,7 +248,7 @@
                               <th>action</th>
                               </tr>
                             </tfoot>
-                            <tbody>
+                            <tbody id='tabl2'>
                               
                             </tbody>
                           </table>
@@ -256,7 +256,7 @@
 
 
 
-                            <!-- </div> -->
+                            <!-- </div> 
                           </div>
                         </div>
                       </div>
@@ -268,7 +268,7 @@
                       <input type="button" class="btn btn-previous btn-fill btn-default btn-wd disabled" name="previous" value="Previous">
                     </div>
                     <div class="ml-auto">
-                      <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="Next">
+                      <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="Next"  style="display: none;">
                       <input type="button" class="btn btn-finish btn-fill btn-rose btn-wd" name="finish" value="Finish" style="display: none;">
                     </div>
                     <div class="clearfix"></div>
@@ -292,67 +292,65 @@
  <?php>
  include '../parts/footer_two.php';
  ?>
- <script>
-     $(function(){     
-        
-        getData("questionpaper", function(data){
-        console.log(data); 
-        var allData = data.response;
-        var questionData = [{}];
-        
-        $.each(allData, function(key,value) {
-            var x = { 
-                "id": value.id,
-                "name": value.name,
-                "marks": value.marks,
-                "duration": value.duration,
-                "subject": value.subject,
-                "class": value.class,
-                "by": value.by,
-                "url": "<a href='#' class='btn btn-link btn-info btn-just-icon' onclick=preview('http://msmypaper.com/jsonqp/"+value.qid+".json')><i class='material-icons'>dvr</i></a><a href='#' class='btn btn-link btn-success btn-just-icon' onclick=selectQp("+value.file_url+")><i class='material-icons'>close</i></a>",
-                "answer":"<a href='#' class='btn btn-link btn-info btn-just-icon' onclick=preview('http://msmypaper.com/jsonqp/"+value.qid+".json')><i class='material-icons'>dvr</i></a><a href='#' class='btn btn-link btn-success btn-just-icon' onclick=selectQp("+value.file_url_answer+")><i class='material-icons'>close</i></a>",
-                "Action":"action"
-                };
-            questionData.push(x);
-        });
-            questionData.splice(0, 1);
-        var table1 = $('#questionPaperTable').DataTable( {
-            Language: {
-            Processing: ""
-            },
-            processing : true,
-            data: questionData,
-            columns: [
-                {"data": "id"},
-                {"data": "name"},
-                {"data": "marks"},
-                {"data": "duration"},
-                {"data": "subject"},
-                {"data": "class"},
-                {"data": "by"},
-                {"data": "url"},
-                {"data": "answer"},
-                {"data": "Action"}
-                ]
-            });
-                
-      });
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-        getData("groups", function(data){
-          console.log(data); 
-          $.each(data.response, function(key, value) {   
-          $('#groupSelect')
-          .append($("<option></option>")
-                      .attr("value",value.id)
-                      .text(value.name)); 
-          });
-        });           
-      });
+<script>
+	function nextTab(){
+		$("#about").removeClass("active");  // this deactivates the home tab
+		$("#account").addClass("active");
+	}
+	function nextTab1(){
+		$("#account").removeClass("active");  // this deactivates the home tab
+		$("#address").addClass("active");
+	}
+</script>
+
+<script>
+	
+	$(document).ready(function(){
+		$.ajax({
+			type:'GET',
+			url:'http://35.194.226.60:3000/api/v1/groups',
+			data:'',
+			success:function(data){
+				console.log(data); 
+				$.each(data.response, function(key, value) {   
+				$('#groupSelect')
+					.append($("<option></option>")
+					.attr("value",value.id)
+					.text(value.name)); 
+				});
+			}
+		});	
+	});
+	
+	$(document).ready(function(){
+		$.ajax({
+			type:'GET',
+			url:'http://35.194.226.60:3000/api/v1/questionpaper',
+			data:'',
+			success:function(data){
+				console.log(data); 
+				$.each(data.response, function(key, value) {   
+				$('#testSelect')
+					.append($("<option></option>")
+					.attr("value",value.id)
+					.text(value.name)); 
+				});
+			}
+		});	
+	});
+	
+	
+</script>
+ 
+ 
+ <script>
+     
 
       function postTest() {
-        $( function(){
-         
-         var title = $('#title').val();
+		 var title = $('#title').val();
          var description = $('#description').val();
          var instructions = $('#instructions').val();   
          var testFileId = $('#testFileId').val();   
@@ -370,16 +368,20 @@
             "end_date" : endDate,
             "group_id" : groupId
          };
-
-          postData("tests", req , function(data){
-            if(data.error==null){
-              showSwal('success-message', "Test Added Successfully");
-            //$('#users').html(syntaxHighlight("Recored Inserted Successflly"));
-            } else{
-            showSwal('error', data.error);            
-            }
-          });           
-        });
+		 
+		  $.ajax({
+			  type:'POST',
+			  url:'http://35.194.226.60:3000/api/v1/tests',
+			  data:req,
+			  success:function(data){
+				  if(data.error==null){
+					  alert("Test Added Successfully");
+				  showSwal('success-message', "Test Added Successfully");
+				  } else{
+				  showSwal('error', data.error);            
+				 }
+			  }
+		  });
       }
 </script>
 <script type="text/javascript">

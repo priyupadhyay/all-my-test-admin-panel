@@ -60,13 +60,13 @@
                       <div class="col-md-3">
                         <div class="form-group">
                           <label class="bmd-label-floating">Username</label>
-                          <input type="text" class="form-control">
+                          <input type="text" name="uname" id="uname1" class="form-control">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Email address</label>
-                          <input type="email" class="form-control">
+                          <input type="email" id="email1" name='email' class="form-control">
                         </div>
                       </div>
                     </div>
@@ -74,21 +74,21 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Fist Name</label>
-                          <input type="text" class="form-control">
+                          <input type="text" id="fname" name='fname' class="form-control">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">Last Name</label>
-                          <input type="text" class="form-control">
+                          <input type="text" id="lname" name='lname' class="form-control">
                         </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label class="bmd-label-floating">Adress</label>
-                          <input type="text" class="form-control">
+                          <label class="bmd-label-floating">Address</label>
+                          <input type="text" id="address" name='address' class="form-control">
                         </div>
                       </div>
                     </div>
@@ -96,19 +96,26 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">City</label>
-                          <input type="text" class="form-control">
+                          <input type="text" name='city' class="form-control">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Country</label>
-                          <input type="text" class="form-control">
+                          <input type="text" name='country' class="form-control">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label class="bmd-label-floating">Postal Code</label>
-                          <input type="text" class="form-control">
+                          <input type="text" name='postalcode' class="form-control">
+                        </div>
+                      </div>
+                    </div>
+					<div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Type</label>
+                          <input type="text" name='type' id='type1' class="form-control">
                         </div>
                       </div>
                     </div>
@@ -118,12 +125,12 @@
                           <label>About Me</label>
                           <div class="form-group">
                             <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                            <textarea class="form-control" rows="5"></textarea>
+                            <textarea class="form-control" name='about' rows="5"></textarea>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-rose pull-right">Update Profile</button>
+                    <button type="button" onClick='updateProfile()' class="btn btn-rose pull-right">Update Profile</button>
                     <div class="clearfix"></div>
                   </form>
                 </div>
@@ -146,15 +153,48 @@
  <?php>
  include '../parts/footer_two.php';
  ?>
+ 
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  <script>
-     $(function(){         
-        var val = <?php echo $id ?>;       
-          getData("users/"+val, function(data){           
-            $('#name').html((data.response[0]["name"]));   
-            $('#uname').html("username - "+(data.response[0]["uname"]));   
-            $('#email').html((data.response[0]["email"]));
-            $('#type').html((data.response[0]["type"]));        
-          console.log(data);
-          });
-        });
+	 var val = <?php echo $id ?>;  
+	$(document).ready(function(){
+		$.ajax({
+		   type:'GET',
+		   url:'http://35.194.226.60:3000/api/v1/users/'+val,
+		   data:'',
+		   success:function(data){
+			   $('#name').html((data.response[0]["name"]));   
+			   $('#uname').html("username - "+(data.response[0]["uname"]));   
+			   $('#email').html((data.response[0]["email"]));
+			   $('#type').html((data.response[0]["type"])); 
+			   
+			   $('#fname').val((data.response[0]["name"]));   
+			   $('#uname1').val((data.response[0]["uname"]));   
+			   $('#email1').val((data.response[0]["email"]));
+			   $('#type1').val((data.response[0]["type"]));        
+			   console.log(data);
+		   }
+		});
+	});
+	
+	function updateProfile(){
+		
+		var dt= {
+            "name": $('#fname').val()+$('#lname').val(),
+            "uname": $('#uname1').val(), 
+            "email": $('#email1').val(), 
+            "type": $('#type1').val(), 
+         };
+		
+		$.ajax({
+			type:'PUT',
+			url:'http://35.194.226.60:3000/api/v1/users/'+val,
+			data: dt,
+			success:function(data){
+				alert(data.response[0].msg);
+				console.log(data);
+			}
+		});
+	}
+	
 </script>

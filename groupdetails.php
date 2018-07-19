@@ -8,7 +8,6 @@
 <title>
  Material Dashboard by Creative Tim
 </title>
-
 <?Php
  include '../parts/header_two.php';
  include '../parts/nav.php';
@@ -16,6 +15,7 @@
 
 ?>
 
+ 
  <div class="content">
         <div class="container-fluid">
           <div class="row">          
@@ -29,7 +29,7 @@
                   <h4 class="card-title text-gray" id="name"></h4>                 
                   <h5 class="card-title text-gray" id="description"></h4>
                   <h4 class="card-title text-gray" id="trainer_id"></h4>
-                  <button class="btn btn-primary  btn-round" data-toggle="modal" data-target="#myModal">
+                  <button id="myBtn" class="btn btn-primary" type="button"  data-toggle="modal" data-target="#group-model">
                        EDIT
                       </button>
                 </div>
@@ -37,9 +37,10 @@
               </div>
 
             </div>
+		
 
-             <!-- Classic Modal -->
-             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<!-- Classic Modal -->
+					<div id="group-model" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -51,9 +52,9 @@
                             <div class="modal-body">
                              
                               <div class="form-group bmd-form-group is-filled">                                
-                                <input type="text" id="title" class="form-control">
-                                <textarea required id="description1" class="form-control"></textarea>
-                                <select required id="userSelect" class="form-control">
+                                <input type="text" id="title" name='title' class="form-control">
+                                <textarea required id="description1" name='description' class="form-control"></textarea>
+                                <select required id="userSelect" name="trainer_id" class="form-control">
                               
                               </select>
                                 
@@ -127,8 +128,9 @@
  <?php>
  include '../parts/footer_two.php';
  ?>
- 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  <script>
      /* $(function(){     
         getData("users/type/Faculty", function(data){
@@ -197,7 +199,7 @@
          req = {"name": n,"description": d,"trainer_id": t}; 
 
 			$.ajax({
-			   type:'GET',
+			   type:'PUT',
 			   url:'http://35.194.226.60:3000/api/v1/groups/'+val,
 			   data:req,
 			   success:function(data){
@@ -208,7 +210,6 @@
 
 
 </script>
-
 
 <script>
 
