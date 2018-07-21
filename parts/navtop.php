@@ -1,3 +1,4 @@
+
 <div class="main-panel">
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
@@ -56,8 +57,8 @@
                 </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#pablo">
-                  <i class="material-icons">person</i>
+                <a class="nav-link" onClick="logout()">
+                  <i id="log-l" class="material-icons">person</i>
                   <p>
                     <span class="d-lg-none d-md-block">Account</span>
                   </p>
@@ -67,4 +68,18 @@
           </div>
         </div>
       </nav>
+	  
+	  <div class="log-n"><p>log out</p></div>
       <!-- End Navbar -->
+	  	<script type="text/javascript">
+		$("#log-l").on('click', function() {
+		  $(".log-n").toggle("log-b");
+		})
+	</script>
+	<script type="text/javascript">
+		function logout(){
+			<?php session_destroy(); ?>
+			location.href="./index.php";
+		}
+	</script>
+	  
