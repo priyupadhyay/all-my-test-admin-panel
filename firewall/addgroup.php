@@ -111,21 +111,25 @@
 </script>
 <script>
     function postUser() {
-        $( function(){
-         
-         var n = $('#name').val();
+        var n = $('#name').val();
          var d = $('#description').val();
          var t = $('#userSelect').val();   
          req = {"name": n,"description": d,"trainer_id": t};
 
-          postData("groups", req , function(data){
-            if(data.error==null){
-            $('#users').html(syntaxHighlight("Recored Inserted Successflly"));
-            } else{
-            $('#users').html(syntaxHighlight(data.error));            
-            }
-          });           
-        });
+		 $.ajax({
+		   type:'POST',
+		   url:'http://35.194.226.60:3000/api/v1/groups',
+		   data:req,
+		   success:function(data){
+				console.log(data); 
+				if(data.error==null){
+					$('#users').html(syntaxHighlight("Recored Inserted Successflly"));
+				} else{
+					$('#users').html(syntaxHighlight(data.error));            
+				}
+			}
+		});
+		 
       }
 
 </script>
