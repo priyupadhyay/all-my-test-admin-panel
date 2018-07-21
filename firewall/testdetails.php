@@ -81,7 +81,7 @@
                           <label>Question</label>
                           <div class="form-group">
                            
-                            <div class="form-control" id="question"></div>
+                            <div class="form-control question-control" id="question"></div>
                           </div>
                         </div>
                       </div>

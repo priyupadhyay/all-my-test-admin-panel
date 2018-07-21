@@ -58,7 +58,7 @@
                         <th>actions</th>
                         </tr>
                       </tfoot>
-                      <tbody>
+                      <tbody id="tabl">
                         
                        </tbody>
                     </table>
@@ -101,107 +101,39 @@
      
     }
 
-
- //$(document).ready(function() {
-        $(function(){
-          getData("tests/time/upcoming", function(data){
-          console.log(data); 
-          
-          //$.each(data.response, function (index, value) {
-        //console.log(value.description);
-    //});      
-    
-    
-
-var allData = data.response;
-        var questionData = [{}];
-        
-        $.each(allData, function(key,value) {
-            
-
-                        var x = {                          
-                           "test_id": value.test_id,
-                           "title": value.title,
-                           "Desc": value.description,
-                           "test_file_id": value.test_file_id,
-                           "scheduled_date": value.scheduled_date,
-                           "end_date": value.end_date,
-                           "status": value.status,
-                           "group_id": value.group_id,       
-                           "action":"<a href='#' class='btn btn-link btn-info btn-just-icon' onclick='myFunctionView("+value.test_id+")'><i class='material-icons'>dvr</i></a><a href='#' class='btn btn-link btn-danger btn-just-icon' onclick='myFunctionDelete("+value.test_id+")'><i class='material-icons'>close</i></a>"                    
-                            };
-           
-           questionData.push(x);
-        });
-            questionData.splice(0, 1);
-var table1 = $('#datatables1').DataTable( {
-            Language: {
-            Processing: ""
-            },
-            processing : true,
-            data: questionData,
-            columns: [
-                {"data": "test_id"},
-                {"data": "title"},
-                {"data": "Desc"},
-                {"data": "test_file_id"},
-                {"data": "scheduled_date"},
-                {"data": "end_date"},
-                {"data": "status"},
-                {"data": "group_id"},
-                {"data": "action"},
-
-            ]
-            });
+    $(document).ready(function(){
+		$.ajax({
+		   type:'GET',
+		   url:'http://35.194.226.60:3000/api/v1/tests/time/upcoming',
+		   data:'',
+		   success:function(data){
+				console.log(data); 
+				var allData = data.response;
+				$.each(allData, function(key,value) {
+                    var x = {                          
+					   "test_id": value.test_id,
+					   "title": value.title,
+					   "Desc": value.description,
+					   "test_file_id": value.test_file_id,
+					   "scheduled_date": value.scheduled_date,
+					   "end_date": value.end_date,
+					   "status": value.status,
+					   "group_id": value.group_id,       
+					   "action":"<a href='#' class='btn btn-link btn-info btn-just-icon' onclick='myFunctionView("+value.test_id+")'><i class='material-icons'>dvr</i></a><a href='#' class='btn btn-link btn-danger btn-just-icon' onclick='myFunctionDelete("+value.test_id+")'><i class='material-icons'>close</i></a>"                    
+					};
+					questionData.push(x);
+				});
+				questionData.splice(0, 1);
+				console.log(questionData); 
+					
+				for (var i in questionData) {
+					$("#tabl").append('<tr id="'+questionData[i].test_id+'"><td>'+questionData[i].test_id+'</td><td>'+questionData[i].title+'</td><td>'+questionData[i].description+'</td><td>'+questionData[i].test_file_id+'</td><td>'+questionData[i].scheduled_date+'</td><td>'+questionData[i].end_date+'</td><td>'+questionData[i].status+'</td><td>'+questionData[i].group_id+'</td><td>'+questionData[i].action+'</td></tr>');
+				}
+			}
+		});	
+	});
 
 
-
-          });          
-        });
- //});
-</script>
-
- <script type="text/javascript">
-  $(document).ready(function() {
-    $('#datatables').DataTable({
-      "pagingType": "full_numbers",
-      "lengthMenu": [
-        [10, 25, 50, -1],
-        [10, 25, 50, "All"]
-      ],
-      responsive: true,
-      language: {
-        search: "_INPUT_",
-        searchPlaceholder: "Search records",
-      }
-
-    });
-
-
-    var table = $('#datatables').DataTable();
-
-    // Edit record
-    table.on('click', '.edit', function() {
-      $tr = $(this).closest('tr');
-
-      var data = table.row($tr).data();
-      alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-    });
-
-    // Delete a record
-    table.on('click', '.remove', function(e) {
-      $tr = $(this).closest('tr');
-      table.row($tr).remove().draw();
-      e.preventDefault();
-    });
-
-    //Like record
-    table.on('click', '.like', function() {
-      alert('You clicked on Like button');
-    });
-
-    $('.card .material-datatables label').addClass('form-group');
-  });
 </script>
 
 </html>
