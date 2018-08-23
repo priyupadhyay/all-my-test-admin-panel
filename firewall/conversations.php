@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
  include '../parts/header_one.php';
  ?>
@@ -158,7 +155,7 @@
 
  </body>
 
- <?php>
+ <?php
  include '../parts/footer_two.php';
  ?>
  <script>

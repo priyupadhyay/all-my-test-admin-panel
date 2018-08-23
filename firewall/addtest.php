@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
  include '../parts/header_one.php';
  ?>
@@ -21,13 +18,13 @@
           <div class="row">
           <div class="col-md-12">
                 
-                  <form method="get" action="" class="form-horizontal">
+                  <!-- <form method="get" action="" class="form-horizontal">
 
                     <div class="row">
                       <label class="col-sm-2 col-form-label">Title</label>
                       <div class="col-sm-10">
                         <div class="form-group">
-                          <input type="text" class="form-control">
+                          <input type="email" class="form-control">
                           <span class="bmd-help">plesae give a title.</span>
                         </div>
                       </div>
@@ -43,14 +40,14 @@
                     </div>
 
                    <div class="row">
-                      <label class="col-sm-2 col-form-label">Select Test</label>
+                      <label class="col-sm-2 col-form-label">Select Group</label>
                       <div class="col-sm-10">
                         <div class="form-group">
-                            <select id="testSelect" class="form-control">
+                            <select id="groupSelect" class="form-control">
                                 
                             </select>
                       
-                          <span class="bmd-help">plesae select a test</span>
+                          <span class="bmd-help">plesae select a group</span>
                         </div>
                       </div>
                     </div>  
@@ -89,13 +86,13 @@
                     
                     <input type="submit" value="Insert" class="btn btn-rose btn-round">
                     
-                  </form> 
+                  </form> -->
 
-<!-- Wizard Form 
-			<div class="wizard-container">
+<!-- Wizard Form -->
+<div class="wizard-container">
               <div class="card card-wizard" data-color="rose" id="wizardProfile">
                 <form action="" method="" novalidate="novalidate">
-                  <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"      
+                  <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
                   <div class="card-header text-center">
                     <h3 class="card-title">
                       Add New Test
@@ -117,7 +114,7 @@
                       <li class="nav-item" style="width: 33.3333%;">
                         <a class="nav-link" href="#address" data-toggle="tab" role="tab">
                           Select Group
-                        </a>
+                        </a> 
                       </li>
                     </ul>
                   <div class="moving-tab" style="width: 171.233px; transform: translate3d(-8px, 0px, 0px); transition: transform 0s;">
@@ -148,8 +145,8 @@
                                 </span>
                               </div>
                               <div class="form-group bmd-form-group has-danger">
-                                <label for="exampleInput11" class="bmd-label-floating">Description</label>
-                                <textarea class="form-control" name="description" id="exampleInput11" aria-required="true">
+                                <label for="description" class="bmd-label-floating">Description</label>
+                                <textarea class="form-control" id="description" aria-required="true">
                                 </textarea>
                               </div>
 
@@ -161,12 +158,36 @@
                               </div>
                               <div class="form-group bmd-form-group has-danger">
                                 <label for="exampleInput11" class="bmd-label-floating">Instructions</label>
-                                <textarea class="form-control" name='instructions' id="exampleInput11" aria-required="true">
+                                <textarea class="form-control" id="instructions" aria-required="true">
                                 </textarea>
                               </div>
                             </div>
+ 
+							<div class="input-group form-control-lg">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                  <i class="material-icons">assignment_late</i>
+                                </span>
+                              </div>
+                              <div class="form-group bmd-form-group has-danger">
+                                <label for="scheduledDate" class="bmd-label-floating">Date</label>
+                                <input type="text" class="form-control datetimepicker" id="scheduledDate"/>		
+                              </div>
+                            </div>
 
- <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" onClick="nextTab()" name="next" value="Next">
+							<div class="input-group form-control-lg">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                  <i class="material-icons">assignment_late</i>
+                                </span>
+                              </div>
+                              <div class="form-group bmd-form-group has-danger">
+                                <label for="endDate" class="bmd-label-floating">End Date</label>
+                                <input type="text" class="form-control datetimepicker" id="endDate"/>
+                              </div>
+                            </div>
+
+
 
                             </div>
                           </div>
@@ -177,7 +198,7 @@
                         <h5 class="info-text"> Select a Question Paper </h5>
                         <div class="row justify-content-center">
                           <div class="col-lg-10">
-                            <!-- <div class="row"> 
+                            <!-- <div class="row"> -->
 
 
 
@@ -185,7 +206,8 @@
                           <table id="questionPaperTable" class="table table-striped table-no-bordered table-hover" cellspacing="0">
                             <thead>
                               <tr>
-                              <th>id</th>
+                              
+                              <th>Actions</th>
                               <th>name</th>
                               <th>marks</th>
                               <th>duration</th>
@@ -193,13 +215,13 @@
                               <th>class</th>                             
                               <th>by</th>
                               <th>url</th>
-                              <th>answer</th>
-                              <th>Actions</th>
+                              
                               </tr>
                             </thead>
                             <tfoot>
                               <tr>
-                              <th>id</th>
+                              
+                              <th>Actions</th>
                               <th>name</th>
                               <th>marks</th>
                               <th>duration</th>
@@ -207,19 +229,18 @@
                               <th>class</th>                             
                               <th>by</th>
                               <th>url</th>
-                              <th>answer</th>
-                              <th>Actions</th>
+                             
                               </tr>
                             </tfoot>
-                            <tbody id="tabl1">
+                            <tbody>
                               
                             </tbody>
                           </table>
                         </div>
 
 
- <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" onClick="nextTab1()" name="next" value="Next">
-                            <!-- </div>
+
+                            <!-- </div> -->
                           </div>
                         </div>
                       </div>
@@ -228,7 +249,7 @@
                         <h5 class="info-text"> Select a Group </h5>
                         <div class="row justify-content-center">
                           <div class="col-lg-10">
-                            <!-- <div class="row"> 
+                            <!-- <div class="row"> -->
 
 
 
@@ -236,19 +257,19 @@
                           <table id="datatables1" class="table table-striped table-no-bordered table-hover" cellspacing="0">
                             <thead>
                               <tr>
+                              <th>action</th>
                               <th>Name</th>
                               <th>Description</th>
-                              <th>action</th>
                               </tr>
                             </thead>
                             <tfoot>
                               <tr>
+                              <th>action</th>
                               <th>Name</th>
                               <th>Description</th>
-                              <th>action</th>
                               </tr>
                             </tfoot>
-                            <tbody id='tabl2'>
+                            <tbody>
                               
                             </tbody>
                           </table>
@@ -256,7 +277,7 @@
 
 
 
-                            <!-- </div> 
+                            <!-- </div> -->
                           </div>
                         </div>
                       </div>
@@ -268,8 +289,8 @@
                       <input type="button" class="btn btn-previous btn-fill btn-default btn-wd disabled" name="previous" value="Previous">
                     </div>
                     <div class="ml-auto">
-                      <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="Next"  style="display: none;">
-                      <input type="button" class="btn btn-finish btn-fill btn-rose btn-wd" name="finish" value="Finish" style="display: none;">
+                      <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="Next">
+                      <input type="button" onclick = "postTest()" class="btn btn-finish btn-fill btn-rose btn-wd" name="finish" value="Finish" style="display: none;">
                     </div>
                     <div class="clearfix"></div>
                   </div>
@@ -289,112 +310,143 @@
 
  </body>
 
- <?php>
+ <?php
  include '../parts/footer_two.php';
  ?>
- 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<script>
-	function nextTab(){
-		$("#about").removeClass("active");  // this deactivates the home tab
-		$("#account").addClass("active");
-	}
-	function nextTab1(){
-		$("#account").removeClass("active");  // this deactivates the home tab
-		$("#address").addClass("active");
-	}
-</script>
-
-<script>
-	
-	$(document).ready(function(){
-		$.ajax({
-			type:'GET',
-			url:'http://35.194.226.60:3000/api/v1/groups',
-			data:'',
-			success:function(data){
-				console.log(data); 
-				$.each(data.response, function(key, value) {   
-				$('#groupSelect')
-					.append($("<option></option>")
-					.attr("value",value.id)
-					.text(value.name)); 
-				});
-			}
-		});	
-	});
-	
-	$(document).ready(function(){
-		$.ajax({
-			type:'GET',
-			url:'http://35.194.226.60:3000/api/v1/questionpaper',
-			data:'',
-			success:function(data){
-				console.log(data); 
-				$.each(data.response, function(key, value) {   
-				$('#testSelect')
-					.append($("<option></option>")
-					.attr("value",value.id)
-					.text(value.name)); 
-				});
-			}
-		});	
-	});
-	
-	
-</script>
- 
- 
+  
  <script>
-     
+     $(function(){     
+        
+        getData("questionpaper", function(data){
+        console.log(data); 
+        var allData = data.response;
+        var questionData = [{}];
+        
+        $.each(allData, function(key,value) {
+            var x = { 
+                "id": value.id,
+                "name": value.name,
+                "marks": value.marks,
+                "duration": value.duration,
+                "subject": value.subject,
+                "class": value.class,
+                "by": value.by,
+                "url": "<a href='http://msmypaper.com/jsonqp/"+value.id+".json' class='btn btn-link btn-info btn-just-icon'><i class='material-icons'>dvr</i></a>",
+                "answer":"<a href='http://msmypaper.com/jsonqp/"+value.id+".json' class='btn btn-link btn-info btn-just-icon' ><i class='material-icons'>dvr</i></a><a href='#' class='btn btn-link btn-success btn-just-icon' onclick=selectQp("+value.file_url_answer+")><i class='material-icons'>close</i></a>",
+                "Action":"<input  class='form-control' type='radio' id='"+value.id+"' name='testFileId' value='"+value.id+"'>"
+                };
+            questionData.push(x);
+        });
+            questionData.splice(0, 1);
+        var table1 = $('#questionPaperTable').DataTable({
+            Language: {
+            Processing: ""
+            },
+            processing : true,
+            data: questionData,
+            columns: [
+                // {"data": "id"},
+                {"data": "Action"},
+                {"data": "name"},
+                {"data": "marks"},
+                {"data": "duration"},
+                {"data": "subject"},
+                {"data": "class"},
+                {"data": "by"},
+                {"data": "url"},
+                // {"data": "answer"},
+                ]
+            });
+                
+      });
+
+		
+        getData("groups", function(data){
+          console.log(data); 
+		  var allData = data.response;
+		  var groupdata = [{}];
+          /* $.each(data.response, function(key, value) {   
+          $('#groupSelect')
+          .append($("<option></option>")
+                      .attr("value",value.id)
+                      .text(value.name)); 
+          }); */
+		  
+		   $.each(allData, function(key,value) {
+            var x = { 
+				"name": value.name,
+                "description": value.description,
+                // "id": value.id,
+                // "status": value.status,
+                // "trainer_id": value.trainer_id,
+                "Action":"<input class='form-control' type='radio' id='"+value.id+"' name='groupId' value='"+value.id+"'>"
+                };
+            groupdata.push(x);
+        });
+            groupdata.splice(0, 1);
+        var table2 = $('#datatables1').DataTable({
+            Language: {
+            Processing: ""
+            },
+            processing : true,
+            data: groupdata,
+            columns: [
+                {"data": "Action"},
+                {"data": "name"},
+                {"data": "description"},
+                ]
+            });
+            
+        });           
+      });
 
       function postTest() {
-		 var title = $('#title').val();
+        $( function(){
+         
+         var title = $('#title').val();
          var description = $('#description').val();
          var instructions = $('#instructions').val();   
-         var testFileId = $('#testFileId').val();   
+         var testFileId = $('input[name=testFileId]:checked').val();   
          var scheduledDate = $('#scheduledDate').val();   
          var endDate = $('#endDate').val();   
-         var groupId = $('#groupId').val();   
+         var groupId = $('input[name=groupId]:checked').val();   
 
 
          req = {
             "title": title,
             "description": description, 
             "instructions": instructions, 
-            "test_file_id": tesFileId, 
+            "test_file_id": testFileId, 
             "scheduled_date": scheduledDate,
             "end_date" : endDate,
-            "group_id" : groupId
+            "group_id" : groupId,
          };
 		 
-		  $.ajax({
-			  type:'POST',
-			  url:'http://35.194.226.60:3000/api/v1/tests',
-			  data:req,
-			  success:function(data){
-				  if(data.error==null){
-					  alert("Test Added Successfully");
-				  showSwal('success-message', "Test Added Successfully");
-				  } else{
-				  showSwal('error', data.error);            
-				 }
-			  }
-		  });
+		 // alert(title);
+		 // alert(description);
+		 // alert(instructions);
+		 // alert(testFileId);
+		 // alert(scheduledDate);
+		 // alert(endDate);
+		 // alert(groupId);
+
+         console.log(req);
+
+		postData("tests", req , function(data){
+            if(data.error==null){
+              // showSwal('success-message', "Test Added Successfully");
+			  swal({ title: 'Success', text: "Test Added Successfully", type: 'success-message', customClass:"btn btn-success",showCancelButton: false, confirmButtonColor: '#e09c19', cancelButtonColor: '#214dde', confirmButtonText: 'ok, Take to all Tests!' }).then(function(isConfirm) { if (isConfirm) { location.href="../firewall/alltest.php"} else{
+				  $('#title').val()="";
+				  $('#description').val()="";
+				  $('#endDate').val()="";
+				  $('#instructions').val()="";
+				  $('#scheduledDate').val()="";
+			  } })
+            } else{
+            showSwal('error', data.error);            
+            }
+          }); 
+		 
+        });
       }
-</script>
-<script type="text/javascript">
-  $(document).ready(function() {
-
-    //init wizard
-
-    demo.initMaterialWizard();
-
-    // Javascript method's body can be found in assets/js/demos.js
-    demo.initDashboardPageCharts();
-
-    demo.initCharts();
-
-  });
 </script>

@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
  include '../parts/header_one.php';
  ?>
- <meta name="google-signin-client_id" content="1049322446768-jidj6vjbm5471ru66g6ensblo5km196t.apps.googleusercontent.com">
+
 <title>
  Material Dashboard by Creative Tim
 </title>
@@ -27,9 +24,9 @@
                   <div class="card-body "> 
                       <div class="row">
                       <div class="col-md-6 offset-md-5" >
-                        <a href="" data-onsuccess="onSignIn" class="btn btn-google g-signin2s">
+                        <button class="btn btn-google">
                           <i class="fa fa-google-plus"></i> Register With Google
-                        </a>
+                        </button>
                       </div>
                       <div class="col-md-6 offset-md-3">
                           <select class="selectpicker" data-size="7" data-style="btn btn-primary btn-round" title="Single Select">
@@ -53,18 +50,6 @@
  include '../parts/footer_two.php';
 
 ?>
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-<script>
-	function onSignIn(googleUser) {
-		alert(googleUser);
-	  var profile = googleUser.getBasicProfile();
-	  alert('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-	  alert('Name: ' + profile.getName());
-	  alert('Image URL: ' + profile.getImageUrl());
-	  alert('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-		
-	}
-</script>
 </body>
 </html>
 

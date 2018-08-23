@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
  include '../parts/header_one.php';
  ?>
@@ -37,9 +34,16 @@
                             </textarea>  
                         </div>
                       </div>
+					  <input type="hidden" value="" id="group_id"/>
+					  <input type="hidden" value="" id="test_file_id"/>
                       <div class="col-md-12">
                         <div class="form-group">                          
                           <input id="inst" type="text" class="form-control text-center" disabled>
+                        </div>
+                      </div> 
+					  <div class="col-md-12">
+                        <div class="form-group">                          
+                          <input id="tname" type="text" class="form-control text-center" disabled>
                         </div>
                       </div>
                       <div class="col-md-12">
@@ -53,11 +57,12 @@
                         </div>
                       </div>
                       
-                     <input type="button" id='btnSubmit' onClick='updateQuestion()' value="Update" class="btn btn-rose btn-round" disabled>
+                     <input type="button" id="btnSubmit" value="Update" onClick="updateQuestion()" style="display:none"  class="btn btn-rose btn-round">
 
                      </form>   
                           
-                  <a onClick="removeClass()" class="btn btn-rose btn-round">Edit</a>
+                  <a onClick="removeClass()" id="btnEdit" class="btn btn-rose btn-round">Edit</a>
+    
     
                 </div>
               </div>
@@ -81,7 +86,7 @@
                           <label>Question</label>
                           <div class="form-group">
                            
-                            <div class="form-control question-control" id="question"></div>
+                            <div class="question-control" id="question"></div>
                           </div>
                         </div>
                       </div>
@@ -105,76 +110,82 @@
 
  </body>
 
- <?php>
+ <?php
  include '../parts/footer_two.php';
  ?>
- 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  <script>
-  var val = <?php echo $id ?>;  
-	$(document).ready(function(){
-		$.ajax({
-			type:'GET',
-			url:'http://35.194.226.60:3000/api/v1/tests/'+val,
-			data:'',
-			success:function(data){
-				$('#name').val((data.response[0]["name"]));   
-				$('#name1').html((data.response[0]["name"]));   
-				$('#desc').val((data.response[0]["description"]));
-				$('#sch_date').val((data.response[0]["scheduled_date"]));
-				$('#end_date').val((data.response[0]["end_date"]));
-				$('#inst').val("Some Instruction");  
-				var url1 = data.response[0]["file_url"];
-				
-				$.ajax({
-					type:'GET',
-					url:url1,
-					data:'',
-					success:function(data,status){
-						$('#question').append("<p>ID : "+data.questionPaperDetails.id); 
-						$('#question').append("<br>Title: "+data.questionPaperDetails.title);  
-						$('#question').append("<br>Subject: "+data.questionPaperDetails.subject);  
-						$('#question').append("<br>Marks: "+data.questionPaperDetails.marks);   
-						$('#question').append("<br>Date: "+data.questionPaperDetails.date);      
-						$('#question').append("<br><br><h3>Questions:</h3> ");
-						$.each(data.questions, function(key,value) {   
-							$('#question').append("<br>Question_id: "+value.question_id);
-							$('#question').append("<br>Image: "+value.ques_img);
-							$('#question').append("<br>Section: "+value.section);
-							$('#question').append("<br>Question: "+value.ques_txt);
-							$('#question').append("<h5>options:</h5> <br>a.)"+value.options.option1+"b.)"+value.options.option2+"c.)"+value.options.option3+"d.)"+value.options.option4+"e.)"+value.options.option5);
-							$('#question').append("<br><br>answer: "+value.answer);
-							$('#question').append("<br>marks: "+value.marks);
-						});
-						$('#question').append("<br><br><br></p>");
-					}
+     $(function(){         
+        var val = <?php echo $id ?>;       
+          getData("tests/"+val, function(data){
+            $('#name').val((data.response[0]["name"]));   
+            $('#name1').html((data.response[0]["name"]));   
+            $('#tname').html((data.response[0]["by"]));   
+            $('#desc').val((data.response[0]["description"]));
+            $('#sch_date').val((data.response[0]["scheduled_date"]));
+            $('#end_date').val((data.response[0]["end_date"]));
+            $('#test_file_id').val((data.response[0]["test_file_id"]));
+            $('#group_id').val((data.response[0]["group_id"]));
+            $('#inst').val("Some Instruction");  
+            var url = data.response[0]["file_url"];
+            $.get(url, function (data, status) {
+                $('#question').append("<p>ID : "+data.questionPaperDetails.id); 
+				$('#question').append("<br>Title: "+data.questionPaperDetails.title);  
+				$('#question').append("<br>Subject: "+data.questionPaperDetails.subject);  
+				$('#question').append("<br>Marks: "+data.questionPaperDetails.marks);   
+				$('#question').append("<br>Date: "+data.questionPaperDetails.date);      
+				$('#question').append("<br><br><h3>Questions:</h3> ");
+				$.each(data.questions, function(key,value) {   
+					$('#question').append("<br>Section: "+value.section);
+					$('#question').append("<br>Question: "+value.ques_txt);
+					$('#question').append("<h5>options:</h5> <br> a.) "+value.options.option1+" b.) "+value.options.option2+" c.) "+value.options.option3+" d.) "+value.options.option4+" e.) "+value.options.option5);
+					$('#question').append("<br><br>answer: "+value.answer);
+					$('#question').append("<br>marks: "+value.marks);
 				});
-				console.log(data);
-			}
-		});
-	});
-	
+				$('#question').append("<br><br><br></p>");                    
+		    });              
+
+          console.log(data);
+          });
+        });
+		
 	function removeClass(){
 		$('#name').removeAttr("disabled"); 
 		$('#name1').removeAttr("disabled"); 
 		$('#desc').removeAttr("disabled"); 
 		$('#sch_date').removeAttr("disabled"); 
+		$('#tname').removeAttr("disabled"); 
 		$('#end_date').removeAttr("disabled"); 
 		$('#inst').removeAttr("disabled"); 
 		$('#question').removeAttr("disabled"); 		
 		$('#btnSubmit').removeAttr("disabled"); 		
+		$('#btnSubmit').show();
+		$('#btnEdit').hide(); 		
 	}
 	
-	function updateQuestion(){
-		$.ajax({
-			type:'PUT',
-			url:'http://35.194.226.60:3000/api/v1/tests/'+val,
-			data:'',
-			success:function(data){
-				// console.log(data);
-				location.reload();
-			}
+	function updateQuestion(){	
+ var val = <?php echo $id ?>;    	
+		 var title = $('#name').val();
+         var description = $('#desc').val();
+         var instructions = $('#inst').val();     
+         var scheduledDate = $('#sch_date').val();   
+         var endDate = $('#end_date').val();     
+         var group_id = $('#group_id').val();     
+         var test_file_id = $('#test_file_id').val();     
+
+         req = {
+            "title": title,
+            "description": description, 
+            "instructions": instructions, 
+            "scheduled_date": scheduledDate,
+            "end_date" : endDate,
+            "group_id" : group_id,
+            "test_file_id" : test_file_id,
+         };
+		 
+		 console.log(req);
+		
+		putData('tests/'+val,req,function(data){
+			location.reload();
 		});
 	}
-	
 </script>

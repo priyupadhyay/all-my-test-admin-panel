@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
  include '../parts/header_one.php';
  ?>
@@ -29,36 +26,31 @@
                 <div class="card-body">
                   <div class="toolbar">
                     <!--        Here you can write extra buttons/actions for the toolbar              -->
+					<a class="btn btn-next btn-fill btn-rose btn-wd" type="button" href="../firewall/addtest.php"> Create New Test </a>
                   </div>
                   <div class="material-datatables">
                     <table id="datatables1" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                       <thead>
                         <tr>
-                        <th>test_id</th>
                         <th>title</th>
-                        <th>Description</th>
-                        <th>test_file_id</th>
+                        <th>Description</th> 
+						<th>Group Name</th>
                         <th>scheduled_date</th>
                         <th>end_date</th>
-                        <th>end_date</th>
-                        <th>group_id</th>
                         <th>actions</th>
                         </tr>
                       </thead>
                       <tfoot>
-                        <tr>
-                        <th>test_id</th>
+                        <tr>                 
                         <th>title</th>
-                        <th>Description</th>
-                        <th>test_file_id</th>
+                        <th>Description</th>    
+						<th>Group Name</th>
                         <th>scheduled_date</th>
-                        <th>end_date</th>
-                        <th>end_date</th>
-                        <th>group_id</th>
+                        <th>end_date</th> 
                         <th>actions</th>
                         </tr>
                       </tfoot>
-                      <tbody id='tabl'>
+                      <tbody>
                         
                        </tbody>
                     </table>
@@ -81,63 +73,122 @@
 
  </body>
 
- <?php>
+ <?php
  include '../parts/footer_two.php';
  ?>
 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
     function myFunctionView(x){
       window.location="testdetails.php?id="+x+"";      
     }
-    var questionData = [{}];
+    
     function myFunctionDelete(x){
-		$.ajax({
-		   type:'DELETE',
-		   url:'http://35.194.226.60:3000/api/v1/groups/tests/'+x,
-		   data:'',
-		   success:function(data){
-				//alert(data);
-				var row = document.getElementById(x);
-				row.parentNode.removeChild(row);
-			}
-		});
+      $(function(){
+        deleteData("tests/"+x, function(data){
+          console.log(data); 
+		  location.reload();
+        });       
+      });
+     
     }
 
-	$(document).ready(function(){
-		$.ajax({
-		   type:'GET',
-		   url:'http://35.194.226.60:3000/api/v1/tests',
-		   data:'',
-		   success:function(data){
-				console.log(data); 
-				var allData = data.response;
-				$.each(allData, function(key,value) {
-                    var x = {                          
-					   "test_id": value.test_id,
-					   "title": value.title,
-					   "Desc": value.description,
-					   "test_file_id": value.test_file_id,
-					   "scheduled_date": value.scheduled_date,
-					   "end_date": value.end_date,
-					   "status": value.status,
-					   "group_id": value.group_id,       
-					   "action":"<a href='#' class='btn btn-link btn-info btn-just-icon' onclick='myFunctionView("+value.test_id+")'><i class='material-icons'>dvr</i></a><a href='#' class='btn btn-link btn-danger btn-just-icon' onclick='myFunctionDelete("+value.test_id+")'><i class='material-icons'>close</i></a>"                    
-					};
-					questionData.push(x);
-				});
-				questionData.splice(0, 1);
-				console.log(questionData); 
-					
-				for (var i in questionData) {
-					$("#tabl").append('<tr id="'+questionData[i].test_id+'"><td>'+questionData[i].test_id+'</td><td>'+questionData[i].title+'</td><td>'+questionData[i].description+'</td><td>'+questionData[i].test_file_id+'</td><td>'+questionData[i].scheduled_date+'</td><td>'+questionData[i].end_date+'</td><td>'+questionData[i].status+'</td><td>'+questionData[i].group_id+'</td><td>'+questionData[i].action+'</td></tr>');
-				}
-			}
-		});	
-	});
 
+ //$(document).ready(function() {
+        $(function(){
+          getData("tests", function(data){
+          console.log(data); 
+          
+          //$.each(data.response, function (index, value) {
+        //console.log(value.description);
+    //});      
+    
+    
+
+var allData = data.response;
+        var questionData = [{}];
+        	
+					
+$.each(allData, function(key,value) { 
+		var x = {                          
+		   "test_id": value.test_id,
+		   "title": value.title,
+		   "Desc": value.description,
+		   "test_file_id": value.test_file_id,
+		   "scheduled_date": value.scheduled_date,
+		   "end_date": value.end_date,
+		   "status": value.status,
+		   "group_id": value.group_name,     
+		   "action":"<a href='#' class='btn btn-link btn-info btn-just-icon' onclick='myFunctionView("+value.test_id+")'><i class='material-icons'>dvr</i></a><a href='#' class='btn btn-link btn-danger btn-just-icon' onclick='myFunctionDelete("+value.test_id+")'><i class='material-icons'>close</i></a>"                    
+	};
+
+questionData.push(x);
+});
+questionData.splice(0, 1);
+var table1 = $('#datatables1').DataTable( {
+            Language: {
+            Processing: ""
+            },
+            processing : true,
+            data: questionData,
+            columns: [
+                {"data": "title"},
+                {"data": "Desc"},
+                {"data": "group_id"},
+                {"data": "scheduled_date"},
+                {"data": "end_date"}, 
+                {"data": "action"},
+            ]
+            });
+
+
+
+          });          
+        });
+ //});
 </script>
 
- 
+ <script type="text/javascript">
+  $(document).ready(function() {
+    $('#datatables').DataTable({
+      "pagingType": "full_numbers",
+      "lengthMenu": [
+        [10, 25, 50, -1],
+        [10, 25, 50, "All"]
+      ],
+      responsive: true,
+      language: {
+        search: "_INPUT_",
+        searchPlaceholder: "Search records",
+      }
+
+    });
+
+
+    var table = $('#datatables').DataTable();
+
+    // Edit record
+    table.on('click', '.edit', function() {
+      $tr = $(this).closest('tr');
+
+      var data = table.row($tr).data();
+      alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+    });
+
+    // Delete a record
+    table.on('click', '.remove', function(e) {
+      $tr = $(this).closest('tr');
+      table.row($tr).remove().draw();
+      e.preventDefault();
+    });
+
+    //Like record
+    table.on('click', '.like', function() {
+      alert('You clicked on Like button');
+    });
+
+    $('.card .material-datatables label').addClass('form-group');
+  });
+</script>
+
 </html>
 
